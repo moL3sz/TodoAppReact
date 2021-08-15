@@ -11,7 +11,7 @@ class TodoList extends React.Component{
     this.state = {todos:[]}
     this.addTodo = this.addTodo.bind(this);
     this.removeRow = this.removeRow.bind(this);
-    this.updateTodo = this.updateTodo.bind(this),
+    this.updateTodo = this.updateTodo.bind(this);
     this.lastTodoId = 0;
   }
   componentDidMount(){
@@ -103,7 +103,7 @@ class TodoList extends React.Component{
   updateTodo(id){
     //just send req to the server
     //the front-end structrue automatically changes
-    fetch("http://localhost:4000",{
+    fetch("http://localhost:4000/todos",{
       method:"PUT",
       body:JSON.stringify({
         id:id
@@ -112,7 +112,7 @@ class TodoList extends React.Component{
     .then(response =>{
     })
     .catch(err=>{
-      
+
     })
 
 

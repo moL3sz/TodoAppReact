@@ -14,9 +14,9 @@ class Todo(db.Model):
 def get_todos() -> List[Todo]:
     return Todo.query.all()
 
-def update_todo(id,checked):
+def update_todo(id):
     current_todo = Todo.query.filter_by(id=id).first()
-    current_todo.checked = checked
+    current_todo.checked = not current_todo.checked 
     db.session.commit()
 def add_todo(name,time):
     new_todo = Todo(name=name, time=time)

@@ -1,6 +1,6 @@
 
 from init import app,api,Resource,cross_origin
-from db import get_todos,add_todo,delete_todo
+from db import get_todos,add_todo,delete_todo,update_todo
 from flask import request
 
 import json
@@ -28,15 +28,16 @@ class TodoList(Resource):
         pass
     @cross_origin(origin='*',headers=['Content-Type','Authorization'])
     def put(self):
+        data = json.loads(request.get_data().decode('utf-8'))
+        update_todo(data["id"])
+        return "200",200
         pass
     @cross_origin(origin='*',headers=['Content-Type','Authorization'])
     def delete(self):
         data = json.loads(request.get_data().decode('utf-8'))
-        print(data)
         delete_todo(data["id"])
         return "200",200
         pass
-
 api.add_resource(TodoList,"/todos")
 
 
